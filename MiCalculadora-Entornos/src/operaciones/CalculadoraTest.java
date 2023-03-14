@@ -30,12 +30,6 @@ class CalculadoraTest {
 	}
 
 	@Test
-	void testResta() {
-		int result = calc.resta();
-		assertEquals(15, result);
-	}
-
-	@Test
 	void testResta2() {
 		Boolean result = calc.resta2();
 		assertTrue(result);
@@ -45,18 +39,6 @@ class CalculadoraTest {
 	void testMultiplica() {
 		int result = calc.multiplica();
 		assertEquals(100, result);
-	}
-
-	@Test
-	void testDivide() {
-		int result = calc.divide();
-		assertEquals(4, result, "No coinciden los resultados");
-	}
-
-	@Test
-	void testDivide2() {
-		Integer result = calc.divide2();
-		assertNotNull(result);
 	}
 
 	@ParameterizedTest
@@ -74,6 +56,53 @@ class CalculadoraTest {
 				Arguments.of(20, 10, 2),
 				Arguments.of(30, -5, -6), 
 				Arguments.of(5, 2, 2)
+			);
+	}
+	
+	@ParameterizedTest
+	@MethodSource("division2")
+	void testDivision2(int num1, int num2, Integer esperado) {
+		Calculadora calcDiv = new Calculadora(num1, num2);
+		Integer result = calcDiv.divide2();
+		assertEquals(esperado, result);
+	}
+	
+	private static Stream <Arguments> division2(){
+		return Stream.of(
+				Arguments.of(30, 10, 3),
+				Arguments.of(10, 0, null)
+			);
+		
+	}
+	
+	@ParameterizedTest
+	@MethodSource("restacion")
+	void testResta(int num1, int num2, int esperado) {
+		Calculadora calcRestacion = new Calculadora(num1, num2);
+		int result = calcRestacion.resta();
+		assertEquals(esperado, result);
+	}
+	
+	private static Stream <Arguments> restacion(){
+		return Stream.of(
+				Arguments.of(30, 10, 20),
+				Arguments.of(20, 50, 30)
+			);
+	}
+	
+	@ParameterizedTest
+	@MethodSource("restacion2")
+	void testResta2(int num1, int num2, Boolean esperado) {
+		Calculadora calcRestacion2 = new Calculadora (num1, num2);
+		Boolean result = calcRestacion2.resta2();
+		assertEquals(esperado, result);
+	}
+	
+	private static Stream <Arguments> restacion2(){
+		return Stream.of(
+				Arguments.of(2, 1, true),
+				Arguments.of(2, 3, false),
+				Arguments.of(2, 2, true)
 			);
 	}
 }
