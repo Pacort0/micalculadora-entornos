@@ -22,7 +22,8 @@ class SumaNumerosTest {
 		return Stream.of(
 				Arguments.of(0, 0),
 				Arguments.of(1, 0),
-				Arguments.of(2, 2)
+				Arguments.of(2, 2),
+				Arguments.of(3, 2)
 				);
 	}
 

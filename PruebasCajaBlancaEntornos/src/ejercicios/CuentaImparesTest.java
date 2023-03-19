@@ -22,7 +22,8 @@ class CuentaImparesTest {
 		return Stream.of(
 				Arguments.of(0, 0),
 				Arguments.of(1, 1),
-				Arguments.of(2, 1)
+				Arguments.of(2, 1),
+				Arguments.of(3, 2)
 				);
 	}
 	
